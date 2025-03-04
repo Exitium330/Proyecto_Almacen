@@ -4,53 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Módulo de Préstamos</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            padding: 20px;
-            background-color: #f4f4f4;
-        }
-        .container {
-            max-width: 600px;
-            margin: auto;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        }
-        label, input, select, button {
-            display: block;
-            width: 100%;
-            margin-bottom: 10px;
-        }
-        button {
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-        .prestamo {
-            background: #e2e2e2;
-            padding: 10px;
-            border-radius: 5px;
-            margin-top: 10px;
-        }
-    </style>
+    <link rel="stylesheet" href="/Css/prestamos.css">
+    
 </head>
 <body>
     <div class="container">
         <h2>Registrar Préstamo</h2>
+        <input type="text" id="busqueda" placeholder="Buscar por instructor" onkeyup="filtrarPrestamos()">
         <label for="articulo">Artículo:</label>
         <select id="articulo">
             <option value="Portátil HP">Portátil HP</option>
-            <option value="Extensiones">Extensiones</option>
-            <option value="Papelería">Papelería</option>
-            <option value="Controles para aires">Controles para aires</option>
+            <option value="Tablet Samsung">Tablet Samsung</option>
+            <option value="Proyector Epson">Proyector Epson</option>
         </select>
         
         <label for="cantidad">Cantidad:</label>
@@ -80,7 +45,7 @@
             let estado = "Pendiente";
             
             if (articulo && cantidad && instructor && ambiente) {
-                let nuevoPrestamo = { articulo, cantidad, instructor, ambiente, fechaHora, estado, novedades: [] };
+                let nuevoPrestamo = { articulo, cantidad, instructor, ambiente, fechaHora, estado };
                 prestamos.push(nuevoPrestamo);
                 mostrarPrestamos();
                 
@@ -90,10 +55,11 @@
             }
         }
 
-        function mostrarPrestamos() {
+        function mostrarPrestamos(filtrados = null) {
             let contenedor = document.getElementById('prestamos');
             contenedor.innerHTML = '';
-            prestamos.forEach((prestamo, index) => {
+            let lista = filtrados || prestamos;
+            lista.forEach((prestamo, index) => {
                 contenedor.innerHTML += `
                     <div class="prestamo">
                         <p><strong>Artículo:</strong> ${prestamo.articulo}</p>
@@ -102,53 +68,29 @@
                         <p><strong>Ambiente:</strong> ${prestamo.ambiente}</p>
                         <p><strong>Fecha y Hora:</strong> ${prestamo.fechaHora}</p>
                         <p><strong>Estado:</strong> ${prestamo.estado}</p>
-                        <button onclick="cambiarEstado(${index})">Cambiar Estado</button>
-                        <button onclick="editarPrestamo(${index})">Editar</button>
-                        <button onclick="agregarNovedad(${index})">Agregar Novedad</button>
-                        <button onclick="borrarPrestamo(${index})">Borrar</button>
-                        <div id="novedades-${index}"></div>
+                        <button onclick="marcarDevuelto(${index})">Marcar como Devuelto</button>
+                        <button onclick="eliminarPrestamo(${index})" style="background-color: red;">Eliminar</button>
                     </div>
                 `;
             });
         }
 
-        function cambiarEstado(index) {
-            let nuevoEstado = prompt("Ingrese el nuevo estado (Pendiente, Aprobado, Devuelto):", prestamos[index].estado);
-            if (nuevoEstado === "Pendiente" || nuevoEstado === "Aprobado" || nuevoEstado === "Devuelto") {
-                prestamos[index].estado = nuevoEstado;
-                mostrarPrestamos();
-            } else {
-                alert("Estado no válido.");
-            }
+        function marcarDevuelto(index) {
+            prestamos[index].estado = "Devuelto";
+            mostrarPrestamos();
         }
 
-        function editarPrestamo(index) {
-            let nuevoArticulo = prompt("Nuevo nombre del artículo:", prestamos[index].articulo);
-            let nuevaCantidad = prompt("Nueva cantidad:", prestamos[index].cantidad);
-            let nuevoInstructor = prompt("Nuevo nombre del instructor:", prestamos[index].instructor);
-            let nuevoAmbiente = prompt("Nuevo número del ambiente:", prestamos[index].ambiente);
-            if (nuevoArticulo && nuevaCantidad && nuevoInstructor && nuevoAmbiente) {
-                prestamos[index].articulo = nuevoArticulo;
-                prestamos[index].cantidad = nuevaCantidad;
-                prestamos[index].instructor = nuevoInstructor;
-                prestamos[index].ambiente = nuevoAmbiente;
-                mostrarPrestamos();
-            }
-        }
-
-        function agregarNovedad(index) {
-            let novedad = prompt("Describe la novedad (pérdida o daño):");
-            if (novedad) {
-                prestamos[index].novedades.push(novedad);
-                let novedadesDiv = document.getElementById(`novedades-${index}`);
-                novedadesDiv.innerHTML += `<p><strong>Novedad:</strong> ${novedad}</p>`;
-            }
-        }
-
-        function borrarPrestamo(index) {
+        function eliminarPrestamo(index) {
             prestamos.splice(index, 1);
             mostrarPrestamos();
+        }
+
+        function filtrarPrestamos() {
+            let filtro = document.getElementById('busqueda').value.toLowerCase();
+            let prestamosFiltrados = prestamos.filter(p => p.instructor.toLowerCase().includes(filtro));
+            mostrarPrestamos(prestamosFiltrados);
         }
     </script>
 </body>
 </html>
+
