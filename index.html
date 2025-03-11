@@ -1,46 +1,46 @@
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menú</title>
-    <link rel="stylesheet" href="/Css/style.css">
+    <html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Menú</title>
+        <link rel="stylesheet" href="/Css/style.css">
 
-</head>
-<body>
-
+    </head>
+    <body>
+        <div class="sidebar">
+            <h2>Menú</h2>
+            <a href="prestamos.html">📚 Préstamos y devoluciones</a>
+            <a href="inventario.html">📦 Inventario</a>
+            <a href="registro.html">👥 Registro de usuarios</a>
+            <a class="ajuste" href="ajustes.html">⚙️​ Ajustes</a>
+        </div>
     
-    <div class="sidebar">
-        <h2>Menú</h2>
-        <a href="prestamos.html">📚 Préstamos</a>
-        <a href="proveedores.html">🚛 Proveedores</a>
-        <a href="inventario.html">📦 Inventario</a>
-        <a href="#menu">📋 Menú</a>
-        <a href="#">👤 Usuarios</a>
-    </div>
+        <div class="content">
+            <h1 id="prestamos">Información del software</h1>
+            <p>Este software ayuda en la gestión de inventarios y préstamos.</p>
+            
+            <div class="carousel-container">
+                <div class="carousel">
+                    <img src="/Img/almacen-interior-logistica-entrega-carga_107791-1777.avif" alt="Imagen 1">
+                    <img src="/Img/pngtree-black-warehouse-free-drawing-image_2292759.jpg" alt="Imagen 2">
+                    <img src="/Img/LOGOSENA-removebg-preview.png" alt="Imagen 3">
+                </div>
+            </div>
+            <script>
+                const carousel = document.querySelector('.carousel');
+                const images = document.querySelectorAll('.carousel img');
+                let index = 0;
+            
+                function changeImage() {
+                    index = (index + 1) % images.length;
+                    const newTransform = -index * 100; 
+                    carousel.style.transform = `translateX(${newTransform}%)`;
+                }
+            
+                setInterval(changeImage, 3000);
+            </script>
+                       
+    </body>
 
-    
-    <div class="content">
-        <h1 id="prestamos">Sección de Préstamos</h1>
-        <p>El menú "prestamos" le permite realizar prestamos de computadores a los usuarios.</p>
-
-        <h1 id="proveedores">Sección de Proveedores</h1>
-        <p>Aquí va la información sobre proveedores...</p>
-
-        <h1 id="inventario">Sección de Inventario</h1>
-        <p>Aquí va la información sobre inventario...</p>
-
-        <h1 id="menu">Sección de Menú</h1>
-        <p>Aquí va la información sobre el menú...</p>
-    </div>
-
-    <img class="logo" src="/Img/LOGOSENA.png" alt="logosena">
-
-    
-    <div id="footer-container"></div>
-
- 
-
-</body>
-
-</html>
+    </html>
 
