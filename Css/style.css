@@ -12,7 +12,7 @@ body {
 .sidebar {
     width: 250px;
     height: 100vh;
-    background-color: #2c3e50;
+    background-color: #038649;
     color: white;
     padding-top: 20px;
     position: fixed;
@@ -68,7 +68,9 @@ body {
     flex: 0 0 100%; 
 }
 
-
+.pie{
+    margin-top: 240px;
+}
 
 
 
