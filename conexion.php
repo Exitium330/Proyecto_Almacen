@@ -1,17 +1,14 @@
 <?php
-// Parámetros de conexión
-$servidor = "localhost";  // Servidor de MySQL
-$usuario = "root";        // Usuario de MySQL 
-$clave = "1027802491";              // Contraseña 
-$base_datos = "proyecto_almacen"; // Nombre de la base de datos
+$servername = "localhost"; 
+$username = "root";        
+$password = "1027802491";            
+$dbname = "proyecto_almacen"; 
 
-// Conectar a MySQL con MySQLi
-$conexion = new mysqli($servidor, $usuario, $clave, $base_datos);
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-// Verificar la conexión
-if ($conexion->connect_error) {
-    die("Error de conexión: " . $conexion->connect_error);
+if ($conn->connect_error) {
+    die("❌ Error: No se pudo establecer conexión con la base de datos. " . $conn->connect_error);
 } else {
-    echo "Conexión exitosa a la base de datos";
+    echo "✅ Conexión exitosa a la base de datos";
 }
 ?>
