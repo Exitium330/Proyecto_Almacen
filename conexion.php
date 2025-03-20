@@ -2,7 +2,7 @@
 // Parámetros de conexión
 $servidor = "localhost";  // Servidor de MySQL
 $usuario = "root";        // Usuario de MySQL 
-$clave = "1027802491";              // Contraseña 
+$clave = "La#5lomejor";              // Contraseña 
 $base_datos = "proyecto_almacen"; // Nombre de la base de datos
 
 // Conectar a MySQL con MySQLi
