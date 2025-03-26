@@ -7,10 +7,9 @@
     <link rel="stylesheet" href="Css/mostrar_registro.css"> 
 </head>
 <body>
+</body>
     
 </html>
-
-
 
 <?php
 include("conexion.php");
@@ -19,7 +18,7 @@ if ($conn->connect_error) {
     die("❌ Error de conexión: " . $conn->connect_error);
 }
 
-$sql = "SELECT id_instructor, nombre, apellido, correo, telefono, ambiente FROM instructores";
+$sql = "SELECT id_instructor, cedula, nombre, apellido, correo, telefono FROM instructores";
 $resultado = $conn->query($sql);
 
 echo "<h2>📋 Lista de Instructores</h2>";
@@ -28,11 +27,12 @@ if ($resultado->num_rows > 0) {
     echo "<table border='1'>";
     echo "<tr>
             <th>ID</th>
+            <th>Cedula</th>
             <th>Nombre</th>
             <th>Apellido</th>
             <th>Correo</th>
             <th>Teléfono</th>
-            <th>Ambiente</th>
+
             <th>Acciones</th>
           </tr>";
 
@@ -43,7 +43,7 @@ if ($resultado->num_rows > 0) {
                 <td>" . htmlspecialchars($fila['apellido']) . "</td>
                 <td>" . htmlspecialchars($fila['correo']) . "</td>
                 <td>" . (!empty($fila['telefono']) ? htmlspecialchars($fila['telefono']) : "No registrado") . "</td>
-                <td>" . htmlspecialchars($fila['ambiente']) . "</td>
+                <td>" . htmlspecialchars($fila['cedula']) . "</td>
                 <td>
                     <form action='eliminar.php' method='POST'>
                         <input type='hidden' name='id_instructor' value='" . htmlspecialchars($fila['id_instructor']) . "'>

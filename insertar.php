@@ -1,5 +1,6 @@
 <?php
-require_once "conexion.php"; 
+require_once "conexion.php";
+
 
 if (!isset($conn)) {
     die("❌ Error: No se pudo establecer conexión con la base de datos.");
@@ -10,16 +11,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $apellido = $_POST["apellido"];
     $correo = $_POST["correo"];
     $telefono = empty($_POST["telefono"]) ? NULL : $_POST["telefono"];
-    $ambiente = $_POST["ambiente"];
+    $cedula = $_POST["cedula"];
 
-    $sql = "INSERT INTO instructores (nombre, apellido, correo, telefono, ambiente) VALUES (?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO instructores (nombre, apellido, correo, telefono, cedula) VALUES (?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($sql);
 
     if (!$stmt) {
         die("❌ Error en la preparación: " . $conn->error);
     }
 
-    $stmt->bind_param("sssss", $nombre, $apellido, $correo, $telefono, $ambiente);
+    $stmt->bind_param("sssss", $nombre, $apellido, $correo, $telefono, $cedula);
 
     if ($stmt->execute()) {
         

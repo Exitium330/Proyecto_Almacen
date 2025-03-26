@@ -1,124 +1,47 @@
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Poppins', sans-serif;
-    display: flex;
-    height: 100vh;
-    background-color: #f0f5f1;
-}
-
-
-.sidebar {
-    width: 250px;
-    background: #2a7a2a;
-    color: white;
-    padding: 20px;
-    height: 100vh;
-    position: fixed;
-    left: 0;
-    top: 0;
-    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
-}
-
-.sidebar h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 24px;
-    font-weight: bold;
-}
-
-.sidebar ul {
-    list-style: none;
-    padding: 0;
-}
-
-.sidebar ul li {
-    margin: 15px 0;
-}
-
-.sidebar ul li a {
-    text-decoration: none;
-    color: white;
-    font-size: 18px;
-    display: block;
-    padding: 12px;
-    border-radius: 8px;
-    transition: 0.3s ease-in-out;
-}
-
-.sidebar ul li a:hover {
-    background: #45a045;
-    transform: scale(1.05);
-}
-
-
-.content {
-    margin-left: 270px;
-    padding: 40px;
-    flex-grow: 1;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-
 .carousel-container {
-    width: 100%;
-    max-width: 600px;
+    width: 100%; 
+    max-width: 500px; /* Ajustar según tu diseño */
     overflow: hidden;
-    border-radius: 15px;
-    margin-top: 20px;
-    position: relative;
-
+    margin: auto;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
-
 .carousel {
     display: flex;
     transition: transform 0.5s ease-in-out;
-    width: 50%;
+    width: 100%;
 }
-
 .carousel img {
     width: 100%;
-    height: auto;
     object-fit: cover;
-    flex-shrink: 0;
 }
 
-.pie {
-    text-align: center;
-    padding: 15px;
-    background: #2a7a2a;
+/* Estilo del usuario logeado */
+.user-info {
+    padding: 10px;
+    background: #0077b6;
     color: white;
-    font-size: 14px;
-    position: fixed;
-    margin-top: 600px;
-    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 5px;
+    margin-bottom: 15px;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-    .sidebar {
-        width: 100%;
-        height: auto;
-        position: relative;
-        padding: 15px;
-    }
-
-    .content {
-        margin-left: 0;
-        padding: 20px;
-    }
-
-    .carousel-container {
-        width: 90%;
-    }
+/* Botón de cerrar sesión */
+.logout-btn {
+    display: block;
+    width: 100%;
+    background: red;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+}
+.logout-btn:hover {
+    background: darkred;
 }
 
 

@@ -9,7 +9,9 @@
 </head>
 <body>
     <h2>Registro de Instructor</h2>
+    
     <form action="insertar.php" method="POST">
+        
         <label for="nombre">Nombres:</label>
         <input type="text" id="nombre" name="nombre" placeholder="Inserte Nombres" required><br><br>
 
@@ -22,11 +24,15 @@
         <label for="telefono">Teléfono:</label>
         <input type="text" id="telefono" name="telefono" placeholder="Inserte Teléfono" maxlength="15"><br><br>
 
-        <label for="ambiente">Ambiente:</label>
-        <input type="text" id="ambiente" name="ambiente" placeholder="Inserte Ambiente" required><br><br>
+        <label for="ambiente">Cédula:</label>
+        <input type="text" id="cedula" name="cedula" placeholder="Inserte Cédula" required><br><br>
 
-        <button type="submit">Guardar</button>
+        <button type="submit" >Guardar</button>
+
     </form>
 
+    <button>Ver Instructores</button>
+
+   
 </body>
 </html>
