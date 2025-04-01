@@ -34,6 +34,13 @@
             background-color: #1b5e20;
         }
     </style>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                if (localStorage.getItem("modoOscuro") === "true") {
+                    document.body.classList.add("dark-mode");
+                }
+            });
+            </script>
 </head>
 <body>
     <div class="container">

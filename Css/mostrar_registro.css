@@ -1,4 +1,4 @@
-/* Estilos generales */
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f0f2f5;
@@ -7,13 +7,13 @@ body {
     text-align: center;
 }
 
-/* Título */
+
 h2 {
     color: #333;
     margin-bottom: 20px;
 }
 
-/* Tabla de instructores */
+
 table {
     width: 90%;
     max-width: 1000px;
@@ -41,7 +41,7 @@ tr:nth-child(even) {
     background: #f9f9f9;
 }
 
-/* Botón Eliminar */
+
 .btn-eliminar {
     padding: 8px 12px;
     background: #dc3545;
@@ -64,4 +64,39 @@ tr:nth-child(even) {
     align-items: center;
     flex-direction: column;
 }
+
+.dark-mode {
+    background-color: #222831;
+    color: white;
+}
+
+.dark-mode table {
+    background-color: #222831;
+    color: white;
+    border-color: white;
+}
+
+.dark-mode button {
+    background-color: #333;
+    color: white;
+    border: 1px solid white;
+}
+
+.dark-mode tr:nth-child(even) {
+    background-color: #2a2f3a; 
+}
+
+.dark-mode th {
+    background-color: #058a53; 
+}
+
+.dark-mode td {
+    color: white;
+}
+
+.dark-mode h2 {
+    color: white;
+}
+
+
 

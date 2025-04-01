@@ -1,3 +1,5 @@
+
+
 <?php
 include 'conexion.php'; 
 
@@ -7,8 +9,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $correo = $_POST['correo'];
     $telefono = $_POST['telefono'];
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT); 
-    $hora_ingreso = date('Y-m-d H:i:s'); 
-    $hora_salida = date('Y-m-d 17:00:00'); 
+    $hora_ingreso = date('Y-m-d H:i:s');
+    $hora_salida = date('Y-m-d 17:00:00');
     $estado = 'activo';
 
     $sql = "INSERT INTO almacenistas (nombres, apellidos, correo, telefono, password, hora_ingreso, hora_salida, estado) 
@@ -28,6 +30,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 } else {
     echo "Método no permitido.";
 }
+
+
 ?>
 
 

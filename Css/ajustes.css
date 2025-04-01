@@ -36,3 +36,41 @@ h1 {
 .settings button:hover {
     background-color: #00b35a;
 }
+
+
+.dark-mode {
+    background-color: #222831;
+    color: #ffffff;
+}
+
+
+.dark-mode .settings button {
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #555;
+}
+
+
+.animacion-boton {
+    transform: scale(1.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+.add-btn{
+    display: block;
+    width: 20%;
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    background-color: #0aa73e;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.add-btn:hover {
+    background-color: #03914a;
+    transform: scale(1.05);
+
+}

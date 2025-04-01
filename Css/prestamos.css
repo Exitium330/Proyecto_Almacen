@@ -51,3 +51,32 @@ button:hover {
 .prestamo p {
     margin: 5px 0;
 }
+
+.dark-mode {
+    background-color: #222831;
+    color: white;
+}
+
+.dark-mode .container {
+    background-color: #333;
+    color: white;
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode input,
+.dark-mode select {
+    background-color: #444;
+    color: white;
+    border: 1px solid #bbb;
+}
+
+.dark-mode button {
+    background-color: #333;
+    color: white;
+    border: 1px solid white;
+}
+
+.dark-mode .prestamo {
+    background: #3a3f47;
+    box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.1);
+}

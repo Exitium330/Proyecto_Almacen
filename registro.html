@@ -4,7 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro de Instructores</title>
-    <link rel="stylesheet" href="Css/registro.css">
+    <link rel="stylesheet" href="css/registro.css?v=<?php echo time(); ?>">
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            if (localStorage.getItem("modoOscuro") === "enabled") {
+                document.body.classList.add("dark-mode");
+            } else {
+                document.body.classList.remove("dark-mode");
+            }
+        });
+        </script>
+        
 
 </head>
 <body>
@@ -31,7 +42,7 @@
 
     </form>
 
-    <button>Ver Instructores</button>
+    
 
    
 </body>

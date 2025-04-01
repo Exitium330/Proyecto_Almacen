@@ -15,7 +15,20 @@ echo "Bienvenido, " . $_SESSION['nombre'];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menú</title>
-    <link rel="stylesheet" href="Css/style.css">
+    <link rel="stylesheet" href="Css/style.css?v=<?php echo time(); ?>">
+
+    <script>
+document.addEventListener("DOMContentLoaded", function () {
+    if (localStorage.getItem("modoOscuro") === "enabled") {
+        document.body.classList.add("dark-mode");
+    } else {
+        document.body.classList.remove("dark-mode");
+    }
+});
+</script>
+
+
+
 
 </head>
 <div class="sidebar">
@@ -25,7 +38,7 @@ echo "Bienvenido, " . $_SESSION['nombre'];
         <h2>📌 Menú</h2>
         <ul>
             <li><a href="prestamos.html">📚 Préstamos y devoluciones</a></li>
-            <li><a href="inventario.html">📦 Inventario</a></li>
+            <li><a href="inventario.php">📦 Inventario</a></li>
             <li><a href="registro.html">👥 Registro de instructores</a></li>
             <li><a href="">📝 Novedades</a></li>
             <li><a href="mostrar_registros.php">🗒️ Listado de instructores</a></li>
