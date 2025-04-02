@@ -9,6 +9,7 @@
 
 </head>
 <body>
+    <h1 class="Gestión">Gestión de Almacén</h1>
     <div class="login-container">
         <h2>Iniciar Sesión</h2>
         <form action="procesar_login.php" method="POST">

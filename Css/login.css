@@ -65,3 +65,11 @@ button:hover {
     box-shadow: 0 0 10px #00ff80;
 }
 
+.Gestión {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
