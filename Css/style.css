@@ -1,16 +1,33 @@
-{
+html, body {
+    height: 100%;
     margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
-    display: flex;
-    height: 100vh;
-    background-color: #f0f5f1;
+    background-color: #f0f5f1; /* Fondo en modo claro */
+    color: black;
+    transition: background-color 0.3s, color 0.3s;
 }
 
+body.dark-mode {
+    background-color: #222831; /* Fondo en modo oscuro */
+    color: white;
+}
+
+.wrapper {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.main-content {
+    flex: 1 0 auto;
+    display: flex;
+    overflow: hidden;
+}
 
 .sidebar {
     width: 250px;
@@ -22,6 +39,7 @@ body {
     left: 0;
     top: 0;
     box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
 }
 
 .sidebar h2 {
@@ -55,17 +73,16 @@ body {
     transform: scale(1.05);
 }
 
-
 .content {
     margin-left: 270px;
     padding: 40px;
     flex-grow: 1;
-    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow: hidden;
+    margin-bottom: 50px; /* Espacio para el footer fijo */
 }
-
 
 .carousel-container {
     width: 100%;
@@ -74,7 +91,6 @@ body {
     border-radius: 15px;
     margin-top: 20px;
     position: relative;
-
 }
 
 .carousel {
@@ -97,12 +113,13 @@ body {
     color: white;
     font-size: 14px;
     width: 100%;
-    position: absolute;
+    height: 50px;
+    box-sizing: border-box;
+    position: fixed; /* Fijamos el footer en la parte inferior */
     bottom: 0;
+    left: 0;
 }
 
-
-/* Responsive */
 @media (max-width: 768px) {
     .sidebar {
         width: 100%;
@@ -114,30 +131,16 @@ body {
     .content {
         margin-left: 0;
         padding: 20px;
+        margin-bottom: 50px; /* Espacio para el footer en modo responsive */
     }
 
     .carousel-container {
         width: 90%;
     }
-}
 
-
-/* 🎨 Estilos generales (Modo Claro) */
-body {
-    background-color: white;
-    color: black;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-/* 🔥 Modo Oscuro */
-body.dark-mode {
-    background-color: #222831;
-    color: white;
-}
-
-/* 🎨 Modificar otros elementos si es necesario */
-.sidebar {
-    background: #2a7a2a;
+    .main-content {
+        min-height: auto;
+    }
 }
 
 body.dark-mode .sidebar {
@@ -154,13 +157,50 @@ body.dark-mode button {
     color: white;
 }
 
-/* Ajustes a otros elementos según tu diseño */
-
-/* ✨ Animación de escala cuando se presiona el botón */
 .animacion-boton {
     transform: scale(1.1);
     transition: transform 0.2s ease-in-out;
 }
+
+.logout-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #c41a1a;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 8px;
+    text-align: center;
+    transition: 0.3s;
+    box-shadow: 0 0 10px rgba(175, 42, 42, 0.8);
+}
+
+.logout-btn:hover {
+    background-color: #ff4c4c;
+    border-color: #d32f2f;
+    box-shadow: 0 0 15px rgba(255, 76, 76, 1);
+    transform: scale(1.02);
+}
+
+.user-info {
+    background-color: #34495e;
+    border-radius: 8px;
+    padding: 6px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.user-info span#username {
+    color: #66ff00;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+
+
+
 
 
 

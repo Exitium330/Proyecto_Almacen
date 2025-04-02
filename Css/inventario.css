@@ -1,118 +1,199 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #ffffff;
-    color: white;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    flex-direction: column;
-}
-.container {
-    width: 90%;
-    max-width: 900px;
-    background: #1e1e1e;
+/* Estilos para la página de inventario */
+.inventory-container {
+    max-width: 800px;
+    margin: 40px auto;
     padding: 20px;
+    background-color: #ffffff;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-    margin-bottom: 20px;
-    overflow-y: auto;
-    max-height: 70vh;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-h1, h2 {
+
+.inventory-container h1 {
     text-align: center;
-    color: #ffffff;
+    color: #2a7a2a;
+    margin-bottom: 30px;
 }
-table {
+
+.inventory-container h2 {
+    color: #333;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+/* Estilos para los formularios */
+.inventory-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.inventory-form label {
+    font-weight: bold;
+    color: #333;
+}
+
+.inventory-form input,
+.inventory-form select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.inventory-form button {
+    padding: 10px;
+    background-color: #2a7a2a;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.inventory-form button:hover {
+    background-color: #45a045;
+}
+
+/* Estilos para las tablas */
+.inventory-table {
     width: 100%;
     border-collapse: collapse;
-    margin: 20px 0;
+    margin-bottom: 30px;
+}
+
+.inventory-table th,
+.inventory-table td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.inventory-table th {
+    background-color: #2a7a2a;
+    color: white;
+}
+
+.inventory-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Estilos para los botones de acción */
+.edit-btn, .delete-btn {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.edit-btn {
+    background-color: #f0ad4e;
+    color: white;
+}
+
+.edit-btn:hover {
+    background-color: #ec971f;
+}
+
+.delete-btn {
+    background-color: #c41a1a;
+    color: white;
+}
+
+.delete-btn:hover {
+    background-color: #a31515;
+}
+
+/* Estilos para el formulario de edición */
+.edit-form {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    border: 1px solid #ddd;
+}
+
+.edit-form button[type="button"] {
+    background-color: #6c757d;
+}
+
+.edit-form button[type="button"]:hover {
+    background-color: #5a6268;
+}
+
+/* Estilos para mensajes de éxito y error */
+.success-message {
+    color: #2a7a2a;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.error-message {
+    color: #c41a1a;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+/* Estilos para la notificación emergente */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #2a7a2a;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    animation: slideIn 0.5s ease-in-out;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+.dark-mode {
     background-color: #222831;
     color: white;
-    border: 1px solid white;
-}
-th, td {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: center;
-}
-th {
-    background-color: #03721d;
+    }
+    
+    .dark-mode table {
+    background-color: #222831;
     color: white;
-}
-.add-btn {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    margin-top: 10px;
-    border: none;
-    background-color: #03721d;
-    color: white;
-    cursor: pointer;
-    border-radius: 5px;
-    font-size: 16px;
-}
-.add-btn:hover {    
-    background-color: #218838;
-}
-.form-container {
-    display: none;
-    margin-top: 20px;
-}
-.form-container select, .form-container input {
-    width: 100%;
-    padding: 8px;
-    margin: 5px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    border-color: white;
+    }
+    
+    .dark-mode button {
     background-color: #333;
     color: white;
-}
-.form-container button {
-    width: 100%;
-    padding: 10px;
-    margin-top: 10px;
-    border: none;
-    background-color: #28a745;
+    border: 1px solid white;
+    }
+    
+    .dark-mode tr:nth-child(even) {
+    background-color: #2a2f3a; 
+    }
+    
+    .dark-mode th {
+    background-color: #0e915a; 
+    }
+    
+    .dark-mode td {
     color: white;
-    cursor: pointer;
-    border-radius: 5px;
-}
-.form-container button:hover {
-    background-color: #218838;
-
-}
-.dark-mode {
-background-color: #222831;
-color: white;
-}
-
-.dark-mode table {
-background-color: #222831;
-color: white;
-border-color: white;
-}
-
-.dark-mode button {
-background-color: #333;
-color: white;
-border: 1px solid white;
-}
-
-.dark-mode tr:nth-child(even) {
-background-color: #2a2f3a; 
-}
-
-.dark-mode th {
-background-color: #058a53; 
-}
-
-.dark-mode td {
-color: white;
-}
-
-.dark-mode h2 {
-color: white;
-}
+    }
+    
+    .dark-mode h2 {
+    color: white;
+    }

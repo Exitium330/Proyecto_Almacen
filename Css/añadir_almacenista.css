@@ -90,19 +90,35 @@ a:hover {
 
 
 .dark-mode {
-    background-color: #121212;
+    background-color: #222831;
     color: white;
-}
-
-.dark-mode table {
-    background-color: #1e1e1e;
+    }
+    
+    .dark-mode table {
+    background-color: #222831;
     color: white;
     border-color: white;
-}
-
-.dark-mode button {
+    }
+    
+    .dark-mode button {
     background-color: #333;
     color: white;
     border: 1px solid white;
-}
+    }
+    
+    .dark-mode tr:nth-child(even) {
+    background-color: #2a2f3a; 
+    }
+    
+    .dark-mode th {
+    background-color: #0e915a; 
+    }
+    
+    .dark-mode td {
+    color: white;
+    }
+    
+    .dark-mode h2 {
+    color: white;
+    }
 

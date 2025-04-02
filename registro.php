@@ -1,4 +1,8 @@
 <?php
+require_once "auth.php"; 
+?>
+
+<?php
 session_start();
 if (!isset($_SESSION['id_usuario']) || $_SESSION['es_admin'] != 1) {
     header("Location: dashboard.php");

@@ -63,13 +63,25 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Añadir Almacenista</title>
-    <link rel="stylesheet" href="Css/añadir_almacenista.css">
+    <link rel="stylesheet" href="Css/añadir_almacenista.css?v=<?php echo time(); ?>">
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        if (localStorage.getItem("modoOscuro") === "enabled") {
+            document.body.classList.add("dark-mode");
+        } else {
+            document.body.classList.remove("dark-mode");
+        }
+    });
+    </script>
+    
     <style>
         .mensaje { padding: 10px; margin: 10px 0; border-radius: 5px; }
         .success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
         .error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
         .warning { background: #fff3cd; color: #856404; border: 1px solid #ffeeba; }
     </style>
+     
 </head>
 <body>
 

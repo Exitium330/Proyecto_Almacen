@@ -1,5 +1,5 @@
 <?php
-session_start(); 
+session_start();
 
 if (!isset($_SESSION['id_usuario'])) {
     header("Location: login.php");
@@ -18,22 +18,20 @@ echo "Bienvenido, " . $_SESSION['nombre'];
     <link rel="stylesheet" href="Css/style.css?v=<?php echo time(); ?>">
 
     <script>
-document.addEventListener("DOMContentLoaded", function () {
-    if (localStorage.getItem("modoOscuro") === "enabled") {
-        document.body.classList.add("dark-mode");
-    } else {
-        document.body.classList.remove("dark-mode");
-    }
-});
-</script>
-
-
-
-
+    document.addEventListener("DOMContentLoaded", function () {
+        if (localStorage.getItem("modoOscuro") === "enabled") {
+            document.body.classList.add("dark-mode");
+        } else {
+            document.body.classList.remove("dark-mode");
+        }
+    });
+    </script>
 </head>
-<div class="sidebar">
+<body>
+
+    <div class="sidebar">
         <div class="user-info">
-            🔑 Usuario logeado: <span id="username">Nombre</span>
+            🔑 Usuario logeado: <span id="username"><?php echo $_SESSION['nombre']; ?></span>
         </div>
         <h2>📌 Menú</h2>
         <ul>
@@ -43,7 +41,6 @@ document.addEventListener("DOMContentLoaded", function () {
             <li><a href="">📝 Novedades</a></li>
             <li><a href="mostrar_registros.php">🗒️ Listado de instructores</a></li>
             <li><a class="ajuste" href="ajustes.php">⚙️ Ajustes</a></li>
-            
         </ul>
         <a href="logout.php" class="logout-btn">🚪 Cerrar sesión</a>
     </div>
@@ -78,12 +75,11 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         setInterval(changeImage, 3000);
-
-    
-        document.getElementById('username').textContent = "<?php echo $_SESSION['nombre']; ?>";
     </script>
+
 </body>
 </html>
+
 
 
 

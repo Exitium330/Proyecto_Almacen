@@ -18,7 +18,7 @@ if (!isset($_SESSION['es_admin'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Configuraciones</title>
-    <link rel="stylesheet" href="css/ajustes.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="Css/ajustes.css?v=<?php echo time(); ?>">
 
     <script>
 document.addEventListener("DOMContentLoaded", function () {
@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function () {
             <button>Cambiar Contraseña</button>
 
             <?php if ($_SESSION['es_admin'] == 1): ?>
-                <button onclick="window.location.href='crear_usuario.html'">➕ Añadir Almacenista</button>
+                <button onclick="window.location.href='crear_usuario_form.php'">➕ Añadir Almacenista</button>
             <?php endif; ?>
 
             <button>Aumentar Tamaño de Letra</button>

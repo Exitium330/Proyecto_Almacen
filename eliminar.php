@@ -1,4 +1,8 @@
 <?php
+require_once "auth.php"; 
+?>
+
+<?php
 include("conexion.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["id_instructor"])) {
