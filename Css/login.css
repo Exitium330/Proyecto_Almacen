@@ -1,8 +1,10 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #017223, #1cc24d);
-    color: white;
+   
+    background: linear-gradient(135deg, #357018, #09ac2c);
+    background-color: white;
+    color: rgb(255, 255, 255);
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -11,7 +13,7 @@ body {
 }
 
 .login-container {
-    background: rgba(0, 0, 0, 0.1);
+    background-color: white;
     backdrop-filter: blur(10px);
     padding: 30px;
     border-radius: 10px;
@@ -21,7 +23,7 @@ body {
 }
 
 h2 {
-    color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
     font-size: 24px;
     margin-bottom: 20px;
 }
@@ -30,21 +32,24 @@ label {
     display: block;
     margin: 10px 0 5px;
     font-size: 14px;
+    color: black;
 }
 
 input {
     width: 90%;
     padding: 10px;
     margin-bottom: 15px;
-    border: none;
+    border: 1.5px solid #ccc;
     border-radius: 5px;
-    background: #2e2e2e;
-    color: white;
+    background: #ffffff;
+    color: rgb(0, 0, 0);
     outline: none;
+    border-color: black;
+    font-family:Verdana, Geneva, Tahoma, sans-serif
 }
 
 input::placeholder {
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(85, 73, 73, 0.6);
 }
 
 button {

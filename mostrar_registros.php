@@ -1,3 +1,19 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['id_usuario'])) {
+    header("Location: login.php");
+    exit();
+}
+
+// Conectar a la base de datos
+include("conexion.php");
+
+if ($conn->connect_error) {
+    die("❌ Error de conexión: " . $conn->connect_error);
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +22,6 @@
     <title>Registros</title>
     <script>
     document.addEventListener("DOMContentLoaded", function () {
-        // Activar/desactivar modo oscuro
         if (localStorage.getItem("modoOscuro") === "enabled") {
             document.body.classList.add("dark-mode");
             console.log("Modo oscuro activado");
@@ -15,7 +30,6 @@
             console.log("Modo oscuro desactivado");
         }
 
-        // Ocultar notificaciones después de 3 segundos
         const notifications = document.querySelectorAll('.notification');
         notifications.forEach(notification => {
             setTimeout(() => {
@@ -26,17 +40,14 @@
             }, 3000);
         });
 
-        // Filtrar la tabla por nombre
         const searchInput = document.getElementById('searchInput');
         const table = document.getElementById('instructorsTable');
         const rows = table.getElementsByTagName('tr');
 
         searchInput.addEventListener('input', function () {
             const searchText = this.value.toLowerCase();
-
-            // Empezamos desde i=1 para saltar la fila de encabezados
             for (let i = 1; i < rows.length; i++) {
-                const nameCell = rows[i].getElementsByTagName('td')[2]; // Columna de "Nombre"
+                const nameCell = rows[i].getElementsByTagName('td')[2];
                 if (nameCell) {
                     const name = nameCell.textContent.toLowerCase();
                     if (name.includes(searchText)) {
@@ -50,7 +61,6 @@
     });
     </script>
     <style>
-        /* Estilo para las notificaciones */
         .notification {
             padding: 10px 20px;
             border-radius: 5px;
@@ -71,8 +81,6 @@
             background-color: #f44336;
             color: white;
         }
-
-        /* Estilo para la barra de búsqueda y el botón */
         .search-container {
             position: absolute;
             top: 10px;
@@ -95,8 +103,6 @@
             outline: none;
             border-color: #2a7a2a;
         }
-
-        /* Estilo para el botón de retroceder */
         .back-btn {
             padding: 8px 16px;
             background-color: #666;
@@ -109,28 +115,96 @@
         .back-btn:hover {
             background-color: #888;
         }
-
-        /* Ajuste para el contenido principal */
         h2 {
-            margin-top: 60px; /* Espacio para la notificación y la barra de búsqueda */
+            margin-top: 60px;
             text-align: center;
         }
-
-        /* Ajuste para la tabla */
         table {
             margin-top: 20px;
+        }
+        .edit-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #ffffff;
+            width: 350px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            font-family: Arial, sans-serif;
+            z-index: 1000;
+            border: 1px solid #bdbdbd;
+        }
+        .edit-popup h2 {
+            color: #2e7d32;
+            font-size: 20px;
+            margin: 0 0 15px 0;
+            text-align: center;
+        }
+        .edit-popup form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .edit-popup label {
+            color: #424242;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .edit-popup input[type="text"],
+        .edit-popup input[type="email"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #bdbdbd;
+            border-radius: 4px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+        .edit-popup input[type="text"]:focus,
+        .edit-popup input[type="email"]:focus {
+            border-color: #4caf50;
+            outline: none;
+            box-shadow: 0 0 3px rgba(76, 175, 80, 0.3);
+        }
+        .edit-popup button {
+            background-color: #4caf50;
+            color: #ffffff;
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+        .edit-popup button:hover {
+            background-color: #388e3c;
+        }
+        .edit-popup a {
+            color: #757575;
+            text-decoration: none;
+            text-align: center;
+            display: block;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        .edit-popup a:hover {
+            color: #2e7d32;
+        }
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
         }
     </style>
     <link rel="stylesheet" href="Css/mostrar_registro.css?v=<?php echo time(); ?>">
 </head>
 <body>
 <?php
-include("conexion.php");
-
-if ($conn->connect_error) {
-    die("❌ Error de conexión: " . $conn->connect_error);
-}
-
 // Procesar la actualización si se envía el formulario de edición
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['actualizar'])) {
     $id_instructor = $_POST['id_instructor'];
@@ -140,14 +214,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['actualizar'])) {
     $correo = $_POST['correo'];
     $telefono = $_POST['telefono'];
 
-    // Validar y sanitizar los datos
     $cedula = filter_var($cedula, FILTER_SANITIZE_STRING);
     $nombre = filter_var($nombre, FILTER_SANITIZE_STRING);
     $apellido = filter_var($apellido, FILTER_SANITIZE_STRING);
     $correo = filter_var($correo, FILTER_SANITIZE_EMAIL);
     $telefono = filter_var($telefono, FILTER_SANITIZE_STRING);
 
-    // Preparar la consulta de actualización
     $sql_update = "UPDATE instructores SET cedula = ?, nombre = ?, apellido = ?, correo = ?, telefono = ? WHERE id_instructor = ?";
     $stmt = $conn->prepare($sql_update);
     $stmt->bind_param("sssssi", $cedula, $nombre, $apellido, $correo, $telefono, $id_instructor);
@@ -157,7 +229,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['actualizar'])) {
     } else {
         echo "<div class='notification error'>❌ Error al actualizar el instructor: " . $conn->error . "</div>";
     }
-
     $stmt->close();
 }
 
@@ -173,27 +244,25 @@ if (isset($_GET['editar'])) {
     if ($resultado_edit->num_rows > 0) {
         $instructor = $resultado_edit->fetch_assoc();
         ?>
-        <h2>✏️ Editar Instructor</h2>
-        <form action="mostrar_registros.php" method="POST">
-            <input type="hidden" name="id_instructor" value="<?php echo htmlspecialchars($instructor['id_instructor']); ?>">
-            <label for="cedula">Cédula:</label>
-            <input type="text" name="cedula" value="<?php echo htmlspecialchars($instructor['cedula']); ?>" required><br>
-
-            <label for="nombre">Nombre:</label>
-            <input type="text" name="nombre" value="<?php echo htmlspecialchars($instructor['nombre']); ?>" required><br>
-
-            <label for="apellido">Apellido:</label>
-            <input type="text" name="apellido" value="<?php echo htmlspecialchars($instructor['apellido']); ?>" required><br>
-
-            <label for="correo">Correo:</label>
-            <input type="email" name="correo" value="<?php echo htmlspecialchars($instructor['correo']); ?>" required><br>
-
-            <label for="telefono">Teléfono:</label>
-            <input type="text" name="telefono" value="<?php echo htmlspecialchars($instructor['telefono'] ?? ''); ?>"><br>
-
-            <button type="submit" name="actualizar">💾 Guardar Cambios</button>
-            <a href="mostrar_registros.php">❌ Cancelar</a>
-        </form>
+        <div class="overlay"></div>
+        <div class="edit-popup">
+            <h2>✏️ Editar Instructor</h2>
+            <form action="mostrar_registros.php" method="POST">
+                <input type="hidden" name="id_instructor" value="<?php echo htmlspecialchars($instructor['id_instructor']); ?>">
+                <label for="cedula">Cédula:</label>
+                <input type="text" name="cedula" value="<?php echo htmlspecialchars($instructor['cedula']); ?>" required>
+                <label for="nombre">Nombre:</label>
+                <input type="text" name="nombre" value="<?php echo htmlspecialchars($instructor['nombre']); ?>" required>
+                <label for="apellido">Apellido:</label>
+                <input type="text" name="apellido" value="<?php echo htmlspecialchars($instructor['apellido']); ?>" required>
+                <label for="correo">Correo:</label>
+                <input type="email" name="correo" value="<?php echo htmlspecialchars($instructor['correo']); ?>" required>
+                <label for="telefono">Teléfono:</label>
+                <input type="text" name="telefono" value="<?php echo htmlspecialchars($instructor['telefono'] ?? ''); ?>">
+                <button type="submit" name="actualizar">💾 Guardar Cambios</button>
+                <a href="mostrar_registros.php">❌ Cancelar</a>
+            </form>
+        </div>
         <?php
     } else {
         echo "<div class='notification error'>❌ Instructor no encontrado.</div>";
@@ -207,7 +276,6 @@ $resultado = $conn->query($sql);
 
 echo "<h2>📋 Lista de Instructores</h2>";
 
-// Agregar la barra de búsqueda y el botón de retroceder
 echo "<div class='search-container'>";
 echo "<input type='text' id='searchInput' placeholder='Buscar por nombre...'>";
 echo "<a href='index.php' class='back-btn'>⬅️ Volver al Menú</a>";
