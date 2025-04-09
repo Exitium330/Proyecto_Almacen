@@ -3,7 +3,7 @@ session_start();
 include 'conexion.php'; /*Conexión a la base de datos*/
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") { /*Verifica si el método de la solicitud es POST*/
-    $correo = filter_var($_POST['correo'], FILTER_SANITIZE_EMAIL);
+    $correo = filter_var($_POST['correo'], FILTER_SANITIZE_EMAIL);/*Se obtiene el correo ingresado por el usuario y se sanitiza*/
     $password = $_POST['password'];/*Se obtiene la contraseña ingresada por el usuario*/
 
     $sql = "SELECT id_almacenista, nombres, password, es_admin FROM almacenistas WHERE correo=?";
@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { /*Verifica si el método de la solic
         if (password_verify($password, $row['password'])) { /*Verifica si la contraseña ingresada coincide con la almacenada en la base de datos*/
             $_SESSION['id_usuario'] = $row['id_almacenista'];
             $_SESSION['nombre'] = $row['nombres'];/*Se almacena el nombre del usuario en la sesión*/
-            $_SESSION['es_admin'] = $row['es_admin'];/*Se almacena el id del usuario en la sesión*/
+            $_SESSION['es_admin'] = $row['es_admin'];/*valida si es admin o almacenista*/
             $_SESSION['hora_ingreso'] = date("Y-m-d H:i:s");/*Se almacena la hora de ingreso en la sesión*/
 
             // Actualizar la hora de ingreso en la base de datos

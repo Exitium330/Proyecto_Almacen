@@ -111,7 +111,7 @@ echo "Bienvenido, " . $_SESSION['nombre'];
         </div>
         <h2>📌 Menú</h2>
         <ul>
-            <li><a href="prestamos.html">📚 Préstamos y devoluciones</a></li>
+            <li><a href="prestamos.php">📚 Préstamos y devoluciones</a></li>
             <li><a href="inventario.php">📦 Inventario</a></li>
             <li><a href="registro.html">👥 Registro de instructores</a></li>
             <li><a href="">📝 Novedades</a></li>
